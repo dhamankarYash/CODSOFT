@@ -1,18 +1,18 @@
 #include<bits/stdc++.h>
 using namespace std;
 int main(){
-srand(static_cast<unsinged>(time(0)));
-int number = rand % 1000 + 1;
-int guessnum;
-cout<<"The number has Generated."<"\n";
-while(true){
-  cout<<"Enter Your Guess number: ";
-  cin>>guessnum;
-  if(guessnum<number){cout<< "Too low! Try again." <<endl;}
-  else if(guessnum>number){cout<< "Too high! Try again."<<endl;}
-  else {
-  cout<< "Congratulations! You guessed the correct number!" <<endl;
-  break;
+    srand(static_cast<unsigned>(time(0)));
+    int number = rand() % 1000 + 1;
+    int guessnum;
+    cout<<"The number has Generated."<"\n";
+    while(true){
+        cout<<"Enter Your Guess number: ";
+        cin>>guessnum;
+        if(guessnum<number){cout<< "Too low! Try again." <<endl;}
+        else if(guessnum>number){cout<< "Too high! Try again."<<endl;}
+        else {
+        cout<< "Congratulations! You guessed the correct number!" <<endl;
+        break;
   }
 }
 return 0;
