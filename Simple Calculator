@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+    int n1, n2, output;
+    char input;
+    cout<<"Enter Value n1 and Value n2 : ";
+    cin>>n1>>n2;
+    
+    cout<<"Choose The Arithmetic Operation You Want (+, -, /, x) : ";
+    cin>>input;
+
+    switch(input){
+
+        case '+': output = n1 + n2; 
+        break;
+
+        case '-': output = n2 - n2; 
+        break;
+
+        case '/': output = n1 / n2; 
+        break;
+
+        case 'x': output = n1 * n2; 
+        break;
+
+        default: cout<<"Invalid Operation";
+    }
+
+
+    cout<<output;
+
+    return 0;
+}
