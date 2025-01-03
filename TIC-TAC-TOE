@@ -1,0 +1,108 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void displayGameBoard(const vector<string>& board) {
+    cout<<endl;
+    cout<< "   " << board[1] << "   |   " << board[2] << "   |   " << board[3] << "   " << endl;
+    cout<< "------|------|------" << endl;
+    cout<< "   " << board[4] << "   |   " << board[5] << "   |   " << board[6] << "   " << endl;
+    cout<< "------|------|------" << endl;
+    cout<< "   " << board[7] << "   |   " << board[8] << "   |   " << board[9] << "   " << endl;
+    cout<<endl;
+}
+
+bool isPositionAvailable(int position, const vector<string>& board) {
+    return position >= 1 && position <= 9 && board[position] != "X" && board[position] != "O";
+}
+
+void markPosition(int position, string symbol, vector<string>& board) {
+    board[position] = symbol;
+}
+
+bool hasPlayerWon(const string& symbol, const vector<string>& board) {
+   
+    for (int i = 1; i <= 7; i += 3) {
+        if (board[i] == symbol && board[i + 1] == symbol && board[i + 2] == symbol) {
+            return true;
+        }
+    }
+    
+    
+    for (int i = 1; i <= 3; i++) {
+        if (board[i] == symbol && board[i + 3] == symbol && board[i + 6] == symbol) {
+            return true;
+        }
+    }
+    
+    
+    if (board[1] == symbol && board[5] == symbol && board[9] == symbol) {
+        return true;
+    }
+    if (board[3] == symbol && board[5] == symbol && board[7] == symbol) {
+        return true;
+    }
+    
+    return false;
+}
+
+bool isBoardFull(const vector<string>& board) {
+    for (int i = 1; i <= 9; i++) {
+        if (board[i] != "X" && board[i] != "O") {
+            return false;
+        }
+    }
+    return true;
+}
+
+void switchPlayer(string& currentPlayer) {
+    currentPlayer = (currentPlayer == "X") ? "O" : "X";
+}
+
+int main() {
+    char playAgain;
+    do {
+        vector<string> gameBoard(10);
+        for (int i = 1; i <= 9; i++) {
+            gameBoard[i] = to_string(i);
+        }
+        
+        string currentPlayer = "X";
+        bool gameWon = false;
+        
+        while (true) {
+            displayGameBoard(gameBoard);
+            
+            int position;
+            cout << "Player " << currentPlayer << ", enter your move (1-9): ";
+            cin >> position;
+            
+            while (!isPositionAvailable(position, gameBoard)) {
+                cout << "Invalid move. Try again: ";
+                cin >> position;
+            }
+            
+            markPosition(position, currentPlayer, gameBoard);
+            
+            if (hasPlayerWon(currentPlayer, gameBoard)) {
+                displayGameBoard(gameBoard);
+                cout << "Player " << currentPlayer << " wins!" <<endl;
+                gameWon = true;
+                break;
+            } else if (isBoardFull(gameBoard)) {
+                displayGameBoard(gameBoard);
+                cout << "It's a draw!" <<endl;
+                break;
+            }
+            
+            switchPlayer(currentPlayer);
+        }
+        
+        cout<< "Do you want to play again? (y/n): ";
+        cin>> playAgain;
+    } while (playAgain == 'y' || playAgain == 'Y');
+    
+    cout<<"Thanks for playing!"<<endl;
+
+
+    return 0;
+}
