@@ -1,6 +1,5 @@
 #include<bits/stdc++.h>
 using namespace std;
-
 void displayGameBoard(const vector<string>& board) {
     cout<<endl;
     cout<< "   " << board[1] << "   |   " << board[2] << "   |   " << board[3] << "   " << endl;
